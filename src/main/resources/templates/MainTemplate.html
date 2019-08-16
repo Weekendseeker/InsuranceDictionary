@@ -1,0 +1,68 @@
+<!DOCTYPE html >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+
+        <title>Insurant</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
+        
+    </head>
+
+    <body>
+
+            <div class="main-back">
+
+
+                <div class="header">
+                    <div class="header-search">
+
+                        <form method="get" th:action="@{/insuranceCompanies/search}">
+                            <input class="search-field" name="searchParam" type="text" th:value="${searchParam}"/>
+
+                            <div class="dropdown">
+
+                            <button class="dropbtn">SearchBy</button>
+
+                            <div class="dropdown-content">
+
+                                <button name="search" value="byName" type="submit">ByName</button>
+                                <button name="search" value="byAddress" type="submit">ByAddress</button>
+                                <button name="search" value="byInn" type="submit">ByINN</button>
+                                <button name="search" value="byOgrn" type="submit">ByORGN</button>
+
+                            </div>
+                        </div>
+
+
+                        </form>
+                    </div>
+
+                    <span class="header-text">Insurant Disctionary</span>
+
+
+                </div>
+
+                <div class="content">
+                    <div class="content-blocks-wrapper">
+                        <div class="insurant-company-block" th:each="company : ${companies}">
+
+                            <h3 th:text= "${company.name}"></h3>
+
+                            <span th:text= "'INN:' + ${company.inn}"></span><br/>
+                            <span th:text= "'ORGN:' + ${company.ogrn}" ></span><br/>
+                            <span th:text= "'Address: ' + ${company.address}" ></span><br/>
+
+                        </div>
+
+                        <div class="add-company-block">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>
